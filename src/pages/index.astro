@@ -1,11 +1,58 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import ListItem from '@/components/ListItem.astro';
+import { ingredients, instructions, nutrition, preparationTime } from '@/data.ts';
+import omeletteImage from '@assets/image-omelette.jpeg';
+import Layout from '@layouts/Layout.astro';
+import { Image } from 'astro:assets';
 ---
 
 <Layout>
-	<Welcome />
+  <div class="xs:rounded-xl xs:overflow-hidden">
+    <Image class="max-h-[300px] w-full object-cover" src={omeletteImage} width={1312} height={600} alt="Omelette" />
+  </div>
+  <div class="space-y-8 px-8 py-10 sm:px-0 sm:pb-0">
+    <div class="space-y-6">
+      <h1 class="text-preset-1">Simple Omelette Recipe</h1>
+      <p class="text-preset-4 text-stone-600">An easy and quick dish, perfect for any meal. This classic omelette combines beaten eggs cooked to perfection, optionally filled with your choice of cheese, vegetables, or meats.</p>
+    </div>
+    <!-- Preparation time -->
+    <div class="space-y-4 rounded-xl bg-rose-50 p-6">
+      <p class="text-preset-3">Preparation time</p>
+      <ul class="space-y-2 pl-2">
+        {preparationTime.map((item) => <ListItem key={item.text} text={item.value} boldText={item.text} />)}
+      </ul>
+    </div>
+
+    <!-- Ingredients -->
+    <div class="border-stone-150 space-y-6 border-b pb-8">
+      <h2 class="text-preset-2">Ingredients</h2>
+      <ul class="space-y-2 pl-2">
+        {ingredients.map((item) => <ListItem key={item.text} text={item.text} />)}
+      </ul>
+    </div>
+
+    <!-- Instructions -->
+    <div class="border-stone-150 space-y-6 border-b pb-8">
+      <h2 class="text-preset-2">Instructions</h2>
+      <ul class="space-y-2 pl-2">
+        {instructions.map((item, index) => <ListItem key={item.text} text={item.value} boldText={item.text} number={index + 1} />)}
+      </ul>
+    </div>
+
+    <!-- Nutrition -->
+    <div class="space-y-6">
+      <h2 class="text-preset-2">Nutrition</h2>
+      <p class="text-preset-4 text-stone-600">The table below shows nutritional values per serving without the additional fillings.</p>
+      <div class="space-y-3">
+        {
+          nutrition.map((item, index) => (
+            <div class={`text-preset-4 border-stone-150 grid grid-cols-2 items-center gap-4 ${index !== nutrition.length - 1 && 'border-b pb-3'} px-8`}>
+              <p class="text-stone-600">{item.text}</p>
+              <p class="text-brown-800 font-bold">{item.value}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
 </Layout>

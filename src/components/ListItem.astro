@@ -1,0 +1,17 @@
+---
+const { text, boldText = null, number = null } = Astro.props;
+---
+
+<li class={`text-preset-4 grid grid-cols-[4px_1fr] ${number ? 'items-start' : 'items-center'} gap-7 text-stone-600`}>
+  {number ? <span class="font-bold text-rose-800">{number}.</span> : <span class="size-1 rounded-full bg-rose-800" />}
+  <p>
+    {
+      boldText && (
+        <>
+          <span class="font-bold">{boldText}</span>:
+        </>
+      )
+    }
+    {text}
+  </p>
+</li>
