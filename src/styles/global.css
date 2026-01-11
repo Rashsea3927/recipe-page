@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Young+Serif&display=swap');
+@import 'tailwindcss';
+
+/* @theme inline {
+} */
+
+@theme {
+  --color-rose-800: hsl(332, 51%, 32%);
+  --color-rose-50: hsl(330, 100%, 98%);
+  --color-stone-900: hsl(24, 5%, 18%);
+  --color-stone-600: hsl(30, 10%, 34%);
+  --color-stone-150: hsl(30, 18%, 87%);
+  --color-stone-100: hsl(30, 54%, 90%);
+  --color-brown-800: hsl(14, 45%, 36%);
+  --font-outfit: 'Outfit', sans-serif;
+  --font-young-serif: 'Young Serif', serif;
+  --leading-base: 1.5;
+  --text-3xl: 1.75rem;
+  --text-5xl: 2.5rem;
+  --breakpoint-xs: 33.75rem; /* 540px */
+}
+
+@layer components {
+  .text-preset-1 {
+    @apply font-young-serif text-4xl leading-none tracking-normal text-stone-900 md:text-5xl;
+  }
+
+  .text-preset-2 {
+    @apply font-young-serif text-brown-800 text-3xl leading-none tracking-normal;
+  }
+
+  .text-preset-3 {
+    @apply font-outfit leading-none font-semibold tracking-normal text-rose-800;
+  }
+
+  .text-preset-4 {
+    @apply font-outfit leading-base font-normal tracking-normal;
+  }
+
+  .text-preset-4-bold {
+    @apply font-outfit leading-base font-bold tracking-normal;
+  }
+}
